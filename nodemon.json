@@ -1,0 +1,5 @@
+{
+    "watch": ["resources/js", "resources/scss", "resources/css"],
+    "ext": "js,jsx,ts,tsx,scss,css",
+    "exec": "npm run build"
+}
