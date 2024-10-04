@@ -1,21 +1,11 @@
-import {Link, Head} from '@inertiajs/react';
-import {PageProps} from '@/types';
-import React, {useState, useEffect} from 'react';
+import { Link, Head } from '@inertiajs/react';
+import { PageProps } from '@/types';
+import { Footer } from '../Components';
 
-export default function Welcome({auth, laravelVersion, phpVersion}: PageProps<{
+export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<{
     laravelVersion: string,
     phpVersion: string
 }>) {
-    const [currentYear, setCurrentYear] = useState<number>(new Date().getFullYear());
-
-    useEffect(() => {
-        const updateYear = () => {
-            setCurrentYear(new Date().getFullYear());
-        };
-        updateYear();
-
-    }, []);
-
     const handleImageError = () => {
         document.getElementById('screenshot-container')?.classList.add('!hidden');
         document.getElementById('docs-card')?.classList.add('!row-span-1');
@@ -35,7 +25,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}: PageProps<{
                         {auth.user ? (
                             <Link
                                 href={route('dashboard')}
-                                className="rounded-md px-4 py-2 bg-gray-800 text-gray-800  border border-gray-300  transition"
+                                className="rounded-md px-4 py-2 bg-gray-800 text-white border border-gray-300 transition"
                             >
                                 Dashboard
                             </Link>
@@ -43,7 +33,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}: PageProps<{
                             <>
                                 <Link
                                     href={route('login')}
-                                    className="rounded-md  px-4 py-2 transition hover:bg-gray-700 hover:text-white"
+                                    className="rounded-md px-4 py-2 transition hover:bg-gray-700 hover:text-white"
                                 >
                                     Увійти
                                 </Link>
@@ -60,7 +50,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}: PageProps<{
                 </nav>
             </header>
 
-            <main className="bg-white text-gray-800 min-h-screen ">
+            <main className="bg-white text-gray-800 min-h-screen">
                 <div className="main__center flex flex-col items-center justify-center">
                     <div className="text-center py-16">
                         <h1 className="text-6xl font-bold tracking-wide">
@@ -71,7 +61,6 @@ export default function Welcome({auth, laravelVersion, phpVersion}: PageProps<{
                             Оптимізуйте операції вашого кавового бізнесу за допомогою нашого спеціалізованого
                             CRM-рішення
                         </p>
-
                     </div>
                 </div>
                 <div className="about__CRM text-left py-16 max-w-2xl margin-left-30">
@@ -96,11 +85,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}: PageProps<{
                     </div>
                 </div>
             </main>
-
-            <footer className="py-4 text-center bg-white border-t border-gray-300">
-                &copy; {currentYear} CRM coffee bean - <Link href={route('politics')} className="text-gray-700 hover:underline">Усі
-                права захищено</Link>
-            </footer>
+            <Footer />
         </>
     );
 }
