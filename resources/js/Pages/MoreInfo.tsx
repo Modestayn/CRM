@@ -1,11 +1,15 @@
 // MoreInfo.tsx
-import {Head, Link} from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { Footer } from '../Components';
+import { useTranslation } from 'react-i18next';
 
 interface MoreInfoProps {
     auth: any;
 }
-function MoreInfo({auth}: MoreInfoProps) {
+
+function MoreInfo({ auth }: MoreInfoProps) {
+    const { t } = useTranslation();
+
     return (
         <>
             <header className="header bg-white shadow-lg">
@@ -19,7 +23,7 @@ function MoreInfo({auth}: MoreInfoProps) {
                                 href={route('dashboard')}
                                 className="rounded-md px-4 py-2 bg-gray-800 text-white border border-gray-300 transition"
                             >
-                                Dashboard
+                                {t('more_infoStr.dashboard')}
                             </Link>
                         ) : (
                             <>
@@ -27,14 +31,14 @@ function MoreInfo({auth}: MoreInfoProps) {
                                     href={route('login')}
                                     className="rounded-md px-4 py-2 transition hover:bg-gray-700 hover:text-white"
                                 >
-                                    Увійти
+                                    {t('more_infoStr.login')}
                                 </Link>
                                 <span className="text-gray-500">/</span>
                                 <Link
                                     href={route('register')}
                                     className="rounded-md px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white"
                                 >
-                                    Зареєструватись
+                                    {t('more_infoStr.register')}
                                 </Link>
                             </>
                         )}
@@ -43,89 +47,64 @@ function MoreInfo({auth}: MoreInfoProps) {
             </header>
             <div className="main__info bg-white py-12">
                 <div className="text-center max-w-3xl m-auto">
-                    <Head title="Більше Інформації" />
-                    {/* Описание проекта */}
-                    <div
-                        className="mt-8 text-left mb-6 bg-gradient-to-r from-gray-100 to-gray-50 p-6 rounded-lg shadow">
-                        <span className="font-bold text-2xl text-gray-700 block mb-2">1. Опис проєкту:</span>
+                    <Head title={t('more_infoStr.title')} />
+
+                    <div className="mt-8 text-left mb-6 bg-gradient-to-r from-gray-100 to-gray-50 p-6 rounded-lg shadow">
+                        <span className="font-bold text-2xl text-gray-700 block mb-2">{t('more_infoStr.project_description.heading')}</span>
                         <p className="text-gray-600 text-lg leading-relaxed">
-                            CRM система кав'ярні призначена для спрощення управління взаємодією з клієнтами та
-                            оптимізації
-                            внутрішніх процесів. Вона дозволяє співробітникам ефективно обробляти інформацію про
-                            клієнтів,
-                            управління програмою лояльності, замовленнями та акціями.
+                            {t('more_infoStr.project_description.text')}
                         </p>
                     </div>
-                    {/* Функціональні можливості */}
-                    <div
-                        className="mt-8 text-left mb-6 bg-gradient-to-r from-gray-100 to-gray-50 p-6 rounded-lg shadow">
-                        <span
-                            className="font-bold text-2xl text-gray-700 block mb-2">2. Функціональні можливості:</span>
+
+                    <div className="mt-8 text-left mb-6 bg-gradient-to-r from-gray-100 to-gray-50 p-6 rounded-lg shadow">
+                        <span className="font-bold text-2xl text-gray-700 block mb-2">{t('more_infoStr.features.heading')}</span>
                         <ul className="list-disc text-gray-600 text-lg leading-relaxed pl-6">
                             <li className="mb-2">
-                                <span className="font-bold text-lg text-gray-800">Клієнтська база:</span> Додавання,
-                                редагування і видалення клієнтів, відстеження їх історії замовлень та статусу в програмі
-                                лояльності.
+                                <span className="font-bold text-lg text-gray-800">{t('more_infoStr.features.list.customer_base.title')}</span>: {t('more_infoStr.features.list.customer_base.text')}
                             </li>
                             <li className="mb-2">
-                                <span className="font-bold text-lg text-gray-800">Програма лояльності:</span> Управління
-                                бонусними балами, рівнями клієнтів, створення персоналізованих пропозицій.
+                                <span className="font-bold text-lg text-gray-800">{t('more_infoStr.features.list.loyalty_program.title')}</span>: {t('more_infoStr.features.list.loyalty_program.text')}
                             </li>
                             <li className="mb-2">
-                                <span className="font-bold text-lg text-gray-800">Замовлення:</span> Фільтрація та пошук
-                                замовлень, перегляд деталей кожного замовлення, управління їх статусами.
+                                <span className="font-bold text-lg text-gray-800">{t('more_infoStr.features.list.orders.title')}</span>: {t('more_infoStr.features.list.orders.text')}
                             </li>
                             <li className="mb-2">
-                                <span className="font-bold text-lg text-gray-800">Акції та пропозиції:</span> Створення
-                                і управління рекламними кампаніями, відображення активних пропозицій для клієнтів.
+                                <span className="font-bold text-lg text-gray-800">{t('more_infoStr.features.list.promotions.title')}</span>: {t('more_infoStr.features.list.promotions.text')}
                             </li>
                         </ul>
                     </div>
-                    {/* Переваги для бізнесу */}
-                    <div
-                        className="mt-8 text-left mb-6 bg-gradient-to-r from-gray-100 to-gray-50 p-6 rounded-lg shadow">
-                        <span className="font-bold text-2xl text-gray-700 block mb-2">3. Переваги для бізнесу:</span>
+
+                    <div className="mt-8 text-left mb-6 bg-gradient-to-r from-gray-100 to-gray-50 p-6 rounded-lg shadow">
+                        <span className="font-bold text-2xl text-gray-700 block mb-2">{t('more_infoStr.business_benefits.heading')}</span>
                         <ul className="list-disc text-gray-600 text-lg leading-relaxed pl-6">
                             <li className="mb-2">
-                                <span
-                                    className="font-bold text-lg text-gray-800">Ефективність управління:</span> Спрощує
-                                роботу барист, менеджерів та маркетологів завдяки централізованій системі управління
-                                клієнтами та замовленнями.
+                                <span className="font-bold text-lg text-gray-800">{t('more_infoStr.business_benefits.list.management_efficiency.title')}</span>: {t('more_infoStr.business_benefits.list.management_efficiency.text')}
                             </li>
                             <li className="mb-2">
-                                <span
-                                    className="font-bold text-lg text-gray-800">Персоналізація обслуговування:</span> Підвищує
-                                лояльність клієнтів за рахунок індивідуальних пропозицій і акцій на основі їхніх
-                                вподобань.
+                                <span className="font-bold text-lg text-gray-800">{t('more_infoStr.business_benefits.list.personalized_service.title')}</span>: {t('more_infoStr.business_benefits.list.personalized_service.text')}
                             </li>
                             <li className="mb-2">
-                                <span
-                                    className="font-bold text-lg text-gray-800">Простота використання:</span> Інтуїтивно
-                                зрозумілий інтерфейс для швидкого навчання співробітників та легкого доступу до
-                                необхідної інформації.
+                                <span className="font-bold text-lg text-gray-800">{t('more_infoStr.business_benefits.list.ease_of_use.title')}</span>: {t('more_infoStr.business_benefits.list.ease_of_use.text')}
                             </li>
                         </ul>
                     </div>
-                    {/* Безпека та масштабованість */}
-                    <div
-                        className="mt-8 text-left mb-6 bg-gradient-to-r from-gray-100 to-gray-50 p-6 rounded-lg shadow">
-                        <span
-                            className="font-bold text-2xl text-gray-700 block mb-2">4. Безпека та масштабованість:</span>
+
+                    <div className="mt-8 text-left mb-6 bg-gradient-to-r from-gray-100 to-gray-50 p-6 rounded-lg shadow">
+                        <span className="font-bold text-2xl text-gray-700 block mb-2">{t('more_infoStr.security_and_scalability.heading')}</span>
                         <p className="text-gray-600 text-lg leading-relaxed">
-                            CRM система передбачає високий рівень безпеки даних завдяки використанню сучасних технологій
-                            шифрування, захисту від SQL-ін'єкцій та інших кіберзагроз. Також система легко масштабується
-                            для підтримки збільшення кількості клієнтів та розширення бізнесу.
+                            {t('more_infoStr.security_and_scalability.text')}
                         </p>
                     </div>
+
                     <Link
                         href={route('home')}
                         className="rounded-md px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white"
                     >
-                        На головну
+                        {t('more_infoStr.back_to_home')}
                     </Link>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     );
 }

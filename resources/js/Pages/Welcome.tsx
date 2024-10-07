@@ -1,11 +1,14 @@
 import { Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import { Footer } from '../Components';
+import { useTranslation } from 'react-i18next';
 
 export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<{
     laravelVersion: string,
     phpVersion: string
 }>) {
+    const { t, i18n } = useTranslation();
+
     const handleImageError = () => {
         document.getElementById('screenshot-container')?.classList.add('!hidden');
         document.getElementById('docs-card')?.classList.add('!row-span-1');
@@ -13,9 +16,13 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
         document.getElementById('background')?.classList.add('!hidden');
     };
 
+    const changeLanguage = (lng: string) => {
+        i18n.changeLanguage(lng);
+    };
+
     return (
         <>
-            <Head title="Welcome" />
+            <Head title={t("welcome")} />
             <header className="header bg-white shadow-lg">
                 <nav className="flex items-center justify-between px-6 py-4 border-b border-gray-300">
                     <p className="header__logo flex items-center">
@@ -27,7 +34,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
                                 href={route('dashboard')}
                                 className="rounded-md px-4 py-2 bg-gray-800 text-white border border-gray-300 transition"
                             >
-                                Dashboard
+                                {t("dashboard")}
                             </Link>
                         ) : (
                             <>
@@ -35,17 +42,23 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
                                     href={route('login')}
                                     className="rounded-md px-4 py-2 transition hover:bg-gray-700 hover:text-white"
                                 >
-                                    Увійти
+                                    {t("login")}
                                 </Link>
                                 <span className="text-gray-500">/</span>
                                 <Link
                                     href={route('register')}
                                     className="rounded-md px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white"
                                 >
-                                    Зареєструватись
+                                    {t("register")}
                                 </Link>
                             </>
                         )}
+                        <div>
+                            <select name="" id="">
+                                <option onClick={() => changeLanguage('en')} className="btn">En</option>
+                                <option onClick={() => changeLanguage('ua')} className="btn">Укр</option>
+                            </select>
+                        </div>
                     </div>
                 </nav>
             </header>
@@ -53,34 +66,33 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
             <main className="bg-white text-gray-800 min-h-screen">
                 <div className="main__center flex flex-col items-center justify-center">
                     <div className="text-center py-16">
-                        <h1 className="text-6xl font-bold tracking-wide">
-                            Заваріть успіх з
+                        <h1 className="main__title text-6xl font-bold tracking-wide">
+                            {t("success_message")}
                             <span className="ml-2">CoffeeCRM</span>
                         </h1>
                         <p className="text-gray-600 text-xl mt-4 max-w-2xl mx-auto">
-                            Оптимізуйте операції вашого кавового бізнесу за допомогою нашого спеціалізованого
-                            CRM-рішення
+                            {t("optimize")}
                         </p>
                     </div>
                 </div>
                 <div className="about__CRM text-left py-16 max-w-2xl margin-left-30">
                     <h2 className="CRM__title text-6xl font-bold tracking-wide">
-                        Про
+                        {t("about")}
                         <span className="ml-2">CoffeeCRM</span>
                     </h2>
                     <p className="CRM__text text-gray-600 text-xl mt-4 max-w-2xl mx-auto">
-                        це сучасне CRM-рішення, яке допомагає оптимізувати управління кавовим бізнесом. Основні функції включають:
+                        {t("crm_description")}
                         <ul className="mt-2 list-disc margin-left-30">
-                            <li>Додавання та управління категоріями товарів.</li>
-                            <li>Ведення обліку грамовки кави та інших продуктів.</li>
-                            <li>Додавання та зберігання контактів постачальників.</li>
-                            <li>Управління запасами, контроль залишків товарів.</li>
-                            <li>Створення замовлень та ведення історії закупівель.</li>
+                            <li>{t("feature_1")}</li>
+                            <li>{t("feature_2")}</li>
+                            <li>{t("feature_3")}</li>
+                            <li>{t("feature_4")}</li>
+                            <li>{t("feature_5")}</li>
                         </ul>
                     </p>
                     <div className='mt-4'>
                         <Link href={route('moreInfo')} className="CRM__btn rounded-md px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white max-w-2xl mx-auto text-xl">
-                            Більше інформації
+                            {t("more_info")}
                         </Link>
                     </div>
                 </div>
